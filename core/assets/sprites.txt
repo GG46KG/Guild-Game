@@ -1,0 +1,19 @@
+sprites.png
+size: 12, 36
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+0
+  rotate: false
+  xy: 0, 0
+  size: 12, 18
+  orig: 12, 18
+  offset: 0, 0
+  index: -1
+1
+  rotate: false
+  xy: 0, 18
+  size: 12, 18
+  orig: 12, 18
+  offset: 0, 0
+  index: -1
