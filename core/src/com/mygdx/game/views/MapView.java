@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.Array;
 import com.mygdx.game.world.Tile;
 import com.mygdx.game.world.WorldMap;
 
-public class MapView{
+public class MapView {
 
     private Array<Sprite> mapSprites;
     private SpriteBatch batch;
@@ -25,6 +25,8 @@ public class MapView{
     private int[] maxGridDimensions = new int[2];
 
     private Color clear;
+
+    private Cursor cursor;
 
     public MapView(Array<Sprite> mapSprites, int scale){
         this.mapSprites = mapSprites;
@@ -47,20 +49,23 @@ public class MapView{
         }
     }
 
-    public void render(WorldMap map, int xCenter, int yCenter){
+    public void render(WorldMap map){
         Tile[][] mapToRender = map.getTiles();
+        if(cursor == null) {
+            cursor = new Cursor(false, false, mapToRender.length, mapToRender[0].length);
+        }
 
         int[] xBounds = new int[2];
         int[] yBounds = new int[2];
-        xBounds[0] = Math.max(0, xCenter - (int) Math.floor(maxGridDimensions[X] * 0.5));
-        yBounds[0] = Math.max(0, yCenter - (int) Math.floor(maxGridDimensions[Y] * 0.5));
-        xBounds[1] = Math.min(mapToRender.length, xCenter + (int) Math.ceil(maxGridDimensions[X] * 0.5));
-        yBounds[1] = Math.min(mapToRender[0].length, yCenter + (int) Math.ceil(maxGridDimensions[Y] * 0.5));
+        xBounds[0] = Math.max(0, cursor.getX() - (int) Math.floor(maxGridDimensions[X] * 0.5));
+        yBounds[0] = Math.max(0, cursor.getY() - (int) Math.floor(maxGridDimensions[Y] * 0.5));
+        xBounds[1] = Math.min(mapToRender.length, cursor.getX() + (int) Math.ceil(maxGridDimensions[X] * 0.5));
+        yBounds[1] = Math.min(mapToRender[0].length, cursor.getY() + (int) Math.ceil(maxGridDimensions[Y] * 0.5));
 
         adjustBoundsForMapBorder(mapToRender, xBounds, maxGridDimensions[X]);
         adjustBoundsForMapBorder(mapToRender, yBounds, maxGridDimensions[Y]);
 
-        drawMap(xCenter, yCenter, mapToRender, xBounds, yBounds);
+        drawMap(cursor.getX(), cursor.getY(), mapToRender, xBounds, yBounds);
     }
 
     private void adjustBoundsForMapBorder(Tile[][] mapToRender, int[] bounds, int dimensionSize) {
@@ -91,14 +96,17 @@ public class MapView{
         batch.end();
     }
 
-    //for testing only, remove when done
-    public void render(WorldMap map){
-        render(map, 0, 0);
-    }
-
     private Sprite getTileSprite(Tile tileToRender){
         return mapSprites.get(tileToRender.getTileType().spriteId);
     }
 
+    public boolean readKeyInput(int keycode){
+        boolean wasHandled = false;
 
+        if(cursor != null){
+            wasHandled = cursor.adjustCursorForInput(keycode);
+        }
+
+        return wasHandled;
+    }
 }
