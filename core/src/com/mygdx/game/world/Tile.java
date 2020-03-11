@@ -7,6 +7,8 @@ public class Tile {
         tileType = TileType.FOREST;
     }
 
+    public Tile(TileType tileType) { this.tileType = tileType;}
+
     public TileType getTileType() {
         return tileType;
     }

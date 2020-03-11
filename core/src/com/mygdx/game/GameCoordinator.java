@@ -1,7 +1,6 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.GL20;
@@ -23,16 +22,18 @@ public class GameCoordinator extends ApplicationAdapter implements InputProcesso
 	public void create () {
 	    gameData = new GameData();
 		batch = new SpriteBatch();
-		mapSprites = new TextureAtlas("sprites.txt");
-		mapView = new MapView(mapSprites.createSprites());
+		mapView = new MapView( new TextureAtlas("sprites.txt"));
 		Gdx.input.setInputProcessor(this);
 	}
 
 	@Override
 	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		mapView.render(gameData.getMap());
+		if(activeView == ActiveView.Map) {
+            mapView.render(gameData.getMap());
+            gameData.getMap().getCursor().adjustCursor();
+        }
 	}
 	
 	@Override
@@ -44,16 +45,14 @@ public class GameCoordinator extends ApplicationAdapter implements InputProcesso
     @Override
     public boolean keyDown(int keycode) {
         if(activeView == ActiveView.Map){
-            return mapView.readKeyInput(keycode);
+            return gameData.getMap().handleInput(keycode);
         }else{
             return false;
         }
     }
 
     @Override
-    public boolean keyUp(int keycode) {
-        return false;
-    }
+    public boolean keyUp(int keycode) { return false; }
 
     @Override
     public boolean keyTyped(char character) {
