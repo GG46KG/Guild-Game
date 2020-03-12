@@ -27,7 +27,8 @@ Sprites/
 .idea/workspace.xml
 
 .gradle
-/build/
+build/
+*/build
 
 # Ignore Gradle GUI config
 gradle-app.setting

@@ -1,5 +1,6 @@
 apply plugin: "java-library"
 apply plugin: "java"
+apply plugin: "kotlin"
 
 sourceCompatibility = 1.8
 
@@ -8,5 +9,6 @@ sourceCompatibility = 1.8
 sourceSets.main.java.srcDirs = ["src/"]
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     api "com.badlogicgames.gdx:gdx:$gdxVersion"
 }
