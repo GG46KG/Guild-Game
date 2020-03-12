@@ -1,5 +1,5 @@
 sprites.png
-size: 24, 234
+size: 24, 330
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -45,37 +45,65 @@ Forest
   orig: 24, 24
   offset: 0, 0
   index: -1
-Investigate
+HeroLots
   rotate: false
   xy: 0, 114
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
-mountain
+HeroSingle
   rotate: false
   xy: 0, 138
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
-Peak
+HeroSome
   rotate: false
   xy: 0, 162
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
-Structure
+HugeMonster
   rotate: false
   xy: 0, 186
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
   index: -1
-Waves
+Investigate
   rotate: false
   xy: 0, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+mountain
+  rotate: false
+  xy: 0, 234
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+Peak
+  rotate: false
+  xy: 0, 258
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+Structure
+  rotate: false
+  xy: 0, 282
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+Waves
+  rotate: false
+  xy: 0, 306
   size: 24, 24
   orig: 24, 24
   offset: 0, 0
