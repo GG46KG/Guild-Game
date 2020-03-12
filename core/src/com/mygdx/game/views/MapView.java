@@ -18,7 +18,7 @@ public class MapView {
     private HashMap<String, Sprite> mapSprites;
     private SpriteBatch batch;
 
-    private static final int DEFAULT_SCALE = 1;
+    private static final float MAP_DEFAULT_SCALE = 1.3f;
     private static final int X = 0;
     private static final int Y = 1;
     private static final float BLINK_DELAY_S = .25f;
@@ -32,15 +32,16 @@ public class MapView {
     private boolean isFeatureBlink = true;
 
     private final Float[] SPRITE_DIMENSIONS;
-    private final int MAP_SCALE;
-    private final int TILE_SPACING;
+    private final float MAP_SCALE;
+    private final float TILE_SPACING;
     private final int[] RENDER_REGION_DIMENSIONS;
 
+    private float[] borderPadding = new float[2];
     private int[] maxGridDimensions = new int[2];
 
     private Color clear;
 
-    public MapView(TextureAtlas textureAtlas, int scale){
+    public MapView(TextureAtlas textureAtlas, float scale){
         createSpriteMap(textureAtlas);
         batch = new SpriteBatch();
         clear = new Color(batch.getColor());
@@ -59,12 +60,15 @@ public class MapView {
     }
 
     public MapView(TextureAtlas mapSprites){
-        this(mapSprites, DEFAULT_SCALE);
+        this(mapSprites, MAP_DEFAULT_SCALE);
     }
 
     private void setGridDimensions(){
         for (int i = 0; i < maxGridDimensions.length; i++) {
             maxGridDimensions[i] = (int) Math.floor(RENDER_REGION_DIMENSIONS[i] / (TILE_SPACING + SPRITE_DIMENSIONS[i] * MAP_SCALE));
+        }
+        for (int i = 0; i < borderPadding.length; i++){
+            borderPadding[i] = (RENDER_REGION_DIMENSIONS[i] - maxGridDimensions[i] * (TILE_SPACING + SPRITE_DIMENSIONS[i] * MAP_SCALE))/2;
         }
     }
 
@@ -125,8 +129,8 @@ public class MapView {
         batch.begin();
         for (int x = xBounds[0]; x < xBounds[1]; x++) {
             for (int y = yBounds[0]; y < yBounds[1]; y++) {
-                offsets[X] = (x - xBounds[0]) * SPRITE_DIMENSIONS[X] * MAP_SCALE + TILE_SPACING * (x - xBounds[0] + 1);
-                offsets[Y] = (y - yBounds[0]) * SPRITE_DIMENSIONS[Y] * MAP_SCALE + TILE_SPACING * (y - yBounds[0] + 1);
+                offsets[X] = (x - xBounds[0]) * SPRITE_DIMENSIONS[X] * MAP_SCALE + TILE_SPACING * (x - xBounds[0] + 1) + borderPadding[X];
+                offsets[Y] = (y - yBounds[0]) * SPRITE_DIMENSIONS[Y] * MAP_SCALE + TILE_SPACING * (y - yBounds[0] + 1) + borderPadding[Y];
 
                 boolean useBlinkColor = x == xCenter && y == yCenter && isCursorBlink;
                 drawTile(worldMap[x][y], offsets, useBlinkColor);
