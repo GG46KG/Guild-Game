@@ -36,7 +36,10 @@ public class WorldMap {
         for(int x = 0; x < map.length; x++){
             for (int y = 0; y < map[x].length; y++) {
                 if(randomizer.nextInt(100) < 70) {
-                    map[x][y] = new Tile();
+                    map[x][y] = new Tile(TileType.FOREST);
+                    if(randomizer.nextInt(100) < 10){
+                        map[x][y].addFeature(new GuildHall());
+                    }
                 }else{
                     map[x][y] = new Tile(TileType.MOUNTAIN);
                 }
