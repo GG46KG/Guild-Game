@@ -27,6 +27,6 @@
 6. The Game Timer
   Implement THE GAME TIMER. Basically, every x seconds, have all the creatures on the map take their next action.
   There should probably be some over the top UI for the game timer.
-7. Guild
+7. Guild (Matt)
   Basically, we need to implement the characteristics of the guild. 
     How much money does it have, what creatures are associated with it, what guild halls does it have, etc.
