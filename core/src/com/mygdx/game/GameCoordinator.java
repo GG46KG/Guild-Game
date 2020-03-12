@@ -33,6 +33,7 @@ public class GameCoordinator extends ApplicationAdapter implements InputProcesso
 		if(activeView == ActiveView.Map) {
             mapView.render(gameData.getMap());
             gameData.getMap().getCursor().adjustCursor();
+            gameData.getMap().advanceGameTimer();
         }
 	}
 	
