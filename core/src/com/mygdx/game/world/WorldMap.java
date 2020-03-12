@@ -1,5 +1,6 @@
 package com.mygdx.game.world;
 
+import com.badlogic.gdx.Input;
 import com.mygdx.game.util.Cursor;
 
 import java.util.Random;
@@ -37,9 +38,6 @@ public class WorldMap {
             for (int y = 0; y < map[x].length; y++) {
                 if(randomizer.nextInt(100) < 70) {
                     map[x][y] = new Tile(TileType.FOREST);
-                    if(randomizer.nextInt(100) < 10){
-                        map[x][y].addFeature(new GuildHall());
-                    }
                 }else{
                     map[x][y] = new Tile(TileType.MOUNTAIN);
                 }
@@ -48,6 +46,10 @@ public class WorldMap {
     }
 
     public boolean handleInput(int keycode){
+        if(keycode == Input.Keys.B){
+            map[cursor.getX()][cursor.getY()].addFeature(new GuildHall());
+            return true;
+        }
         return false;
     }
 }
