@@ -22,7 +22,7 @@ public class MapView {
     private static final int X = 0;
     private static final int Y = 1;
     private static final float BLINK_DELAY_S = .25f;
-    private static final float FEATURE_BLINK_DELAY_S = .55f;
+    private static final float FEATURE_BLINK_DELAY_S = 1.2f;
 
     private Pair<Integer, Integer> oldXYOfCursor = new Pair(0,0);
     private float cursorBlinkTimer = 0;
@@ -95,22 +95,22 @@ public class MapView {
     }
 
     private void setBlinkState(Cursor cursor) {
-        cursorBlinkTimer += Gdx.graphics.getDeltaTime();
-        featureBlinkTimer += Gdx.graphics.getDeltaTime();
+        cursorBlinkTimer -= Gdx.graphics.getDeltaTime();
+        featureBlinkTimer -= Gdx.graphics.getDeltaTime();
 
         if(oldXYOfCursor.getKey() != cursor.getX()
                 || oldXYOfCursor.getValue() != cursor.getY()){
             isCursorBlink = true;
-            cursorBlinkTimer = 0;
+            cursorBlinkTimer = BLINK_DELAY_S;
             oldXYOfCursor = new Pair<>(cursor.getX(), cursor.getY());
-        }else if(cursorBlinkTimer > BLINK_DELAY_S){
+        }else if(cursorBlinkTimer <= 0){
             isCursorBlink = !isCursorBlink;
-            cursorBlinkTimer = 0;
+            cursorBlinkTimer = BLINK_DELAY_S;
         }
 
-        if(featureBlinkTimer > FEATURE_BLINK_DELAY_S){
+        if(featureBlinkTimer <= 0){
+            featureBlinkTimer = !isFeatureBlink ? FEATURE_BLINK_DELAY_S/3 : FEATURE_BLINK_DELAY_S;
             isFeatureBlink = !isFeatureBlink;
-            featureBlinkTimer = 0;
         }
     }
 

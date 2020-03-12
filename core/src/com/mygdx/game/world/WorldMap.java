@@ -1,12 +1,18 @@
 package com.mygdx.game.world;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.mygdx.game.util.Cursor;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class WorldMap {
+    private static final float TIME_STEP_INTERVAL_S = 1.5f;
+    private static float timeStepGlobalTimer = TIME_STEP_INTERVAL_S;
+
     private Tile[][] map;
+    private ArrayList<Creature> creatures;
 
     private static final int DEFAULT_LENGTH = 100;
     private static final int DEFAULT_HEIGHT = 60;
@@ -18,6 +24,7 @@ public class WorldMap {
         map = new Tile[length][height];
         generateNewMap();
         cursor = new Cursor(false, false, length, height);
+        creatures = new ArrayList<>();
     }
 
     public WorldMap(){
@@ -51,5 +58,18 @@ public class WorldMap {
             return true;
         }
         return false;
+    }
+
+    public void addCreatureAtCoordinates(Creature creature, int x, int y){
+
+    }
+
+    public void advanceGameTimer() {
+        if(timeStepGlobalTimer >= 0){
+            timeStepGlobalTimer -= Gdx.graphics.getDeltaTime();
+        }else{
+            //process time based actions
+            timeStepGlobalTimer = TIME_STEP_INTERVAL_S;
+        }
     }
 }
