@@ -16,8 +16,4 @@ public class GameData {
     public WorldMap getMap() {
         return map;
     }
-
-    public void setMap(WorldMap map) {
-        this.map = map;
-    }
 }

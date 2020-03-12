@@ -1,0 +1,32 @@
+1. Sub-actions (ActionContexts)
+  Pushing certain commands should cause the next command or commands to change contexts.
+  For example, after pushing 'b' for 'build':
+    Your next key press should be a subcommand, e.g. b->g should build a guild hall.
+    The command display on the right should show what keys will do in the context of building.
+2. Command Display
+  The blank area on the right has been reserved for a readout of what keys will do what.
+  This area should clearly highlight the key that will cause the listed action.
+3. World Generation
+  a) Establish the rules behind world generation.
+  b) Implement world generation.
+4. Creatures (Matt)
+  Creatures should know what tile they are on.
+  Creatures should be able to move between tiles.
+  Creatures should have a "home" tile that they return to. For heroes, this is a guild hall, for example.
+    This home can be null, meaning that the creature will wander instead of returning to a specific place.
+  Creatures need to have a "team". When creatures of different teams move onto the same square, they can fight.
+  Creatures need to be able to pathfind to specific tiles. 
+    They should not move through impassible terrain, and should avoid slow terrain.
+    Probably, creatures should just figure out what next tile to move to.
+  Creatures should have an "intent".
+    Essentially, the next time the Game Timer triggers, all the creatures should carry out their intent.
+    Examples: Nothing, Rest, Ability, Fight, and Move.
+5. World Features
+  Cities and stuff. These should have inherent properties that define what they do.
+  (Step a: figure out what these should do.)
+6. The Game Timer
+  Implement THE GAME TIMER. Basically, every x seconds, have all the creatures on the map take their next action.
+  There should probably be some over the top UI for the game timer.
+7. Guild (Matt)
+  Basically, we need to implement the characteristics of the guild. 
+    How much money does it have, what creatures are associated with it, what guild halls does it have, etc.

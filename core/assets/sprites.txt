@@ -1,5 +1,5 @@
 sprites.png
-size: 12, 36
+size: 24, 330
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
@@ -12,8 +12,99 @@ repeat: none
   index: -1
 1
   rotate: false
-  xy: 0, 18
+  xy: 12, 0
   size: 12, 18
   orig: 12, 18
+  offset: 0, 0
+  index: -1
+Alert
+  rotate: false
+  xy: 0, 18
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+Castle
+  rotate: false
+  xy: 0, 42
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+Danger
+  rotate: false
+  xy: 0, 66
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+Forest
+  rotate: false
+  xy: 0, 90
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+HeroLots
+  rotate: false
+  xy: 0, 114
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+HeroSingle
+  rotate: false
+  xy: 0, 138
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+HeroSome
+  rotate: false
+  xy: 0, 162
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+HugeMonster
+  rotate: false
+  xy: 0, 186
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+Investigate
+  rotate: false
+  xy: 0, 210
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+mountain
+  rotate: false
+  xy: 0, 234
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+Peak
+  rotate: false
+  xy: 0, 258
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+Structure
+  rotate: false
+  xy: 0, 282
+  size: 24, 24
+  orig: 24, 24
+  offset: 0, 0
+  index: -1
+Waves
+  rotate: false
+  xy: 0, 306
+  size: 24, 24
+  orig: 24, 24
   offset: 0, 0
   index: -1

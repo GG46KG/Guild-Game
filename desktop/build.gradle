@@ -1,6 +1,9 @@
+apply plugin: "java-library"
 apply plugin: "java"
+apply plugin: "kotlin"
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
+
 sourceSets.main.java.srcDirs = [ "src/" ]
 sourceSets.main.resources.srcDirs = ["../core/assets"]
 
@@ -35,7 +38,13 @@ task dist(type: Jar) {
     with jar
 }
 
-
 dist.dependsOn classes
 
-eclipse.project.name = appName + "-desktop"
+dependencies {
+    implementation project(":core")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    api "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+    api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    api "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
+}
