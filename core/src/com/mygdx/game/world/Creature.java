@@ -1,5 +1,5 @@
 package com.mygdx.game.world;
 
-public class Creature {
+public abstract class Creature {
     private int health;
 }
