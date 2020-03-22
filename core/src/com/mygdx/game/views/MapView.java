@@ -9,9 +9,9 @@ import com.mygdx.game.util.Cursor;
 import com.mygdx.game.world.Tile;
 import com.mygdx.game.world.WorldFeature;
 import com.mygdx.game.world.WorldMap;
-import javafx.util.Pair;
 
 import java.util.HashMap;
+import kotlin.Pair;
 
 public class MapView {
 
@@ -24,7 +24,7 @@ public class MapView {
     private static final float BLINK_DELAY_S = .25f;
     private static final float FEATURE_BLINK_DELAY_S = 1.2f;
 
-    private Pair<Integer, Integer> oldXYOfCursor = new Pair(0,0);
+    private Pair<Integer, Integer> oldXYOfCursor = new Pair<>(0,0);
     private float cursorBlinkTimer = 0;
     private boolean isCursorBlink = true;
 
@@ -98,12 +98,12 @@ public class MapView {
         cursorBlinkTimer -= Gdx.graphics.getDeltaTime();
         featureBlinkTimer -= Gdx.graphics.getDeltaTime();
 
-        if(oldXYOfCursor.getKey() != cursor.getX()
-                || oldXYOfCursor.getValue() != cursor.getY()){
+        if(oldXYOfCursor.getFirst() != cursor.getX()
+                || oldXYOfCursor.getSecond() != cursor.getY()){
             isCursorBlink = true;
             cursorBlinkTimer = BLINK_DELAY_S;
             oldXYOfCursor = new Pair<>(cursor.getX(), cursor.getY());
-        }else if(cursorBlinkTimer <= 0){
+        } else if(cursorBlinkTimer <= 0){
             isCursorBlink = !isCursorBlink;
             cursorBlinkTimer = BLINK_DELAY_S;
         }
